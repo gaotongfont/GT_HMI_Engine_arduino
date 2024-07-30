@@ -73,23 +73,23 @@
 
 - **gt_conf.h**
 把GT_SCREEN_WIDTH改成320，GT_SCREEN_HEIGHT改成240。
-![alt text](extras/img/image-5.png)
+<img src="extras/img/image-5.png" alt="配置截图" style="display:block;">
 
 - **gt_port_disp.c**
 首先，把头文件"esp_heap_caps.h"添加进来，
-![alt text](extras/img/image-11.png)
+<img src="extras/img/image-11.png" alt="配置截图" style="display:block;">
 然后，把buff_all数组使用PSRAM进行内存分配。
-![alt text](extras/img/image-12.png)
+<img src="extras/img/image-12.png" alt="配置截图" style="display:block;">
 最后，还需要修改platformio.ini文件，在这里指定FLASH和PSRAM的运行模式以及启动PSRAM。
-![alt text](extras/img/image-19.png)
+<img src="extras/img/image-19.png" alt="配置截图" style="display:block;">
 
 - **gt_port_indev.c**
 该示例使用了3个物理按键，需要在gt_port_indev_init()里，把注册输入设备按键的类型改成GT_INDEV_TYPE_KEYPAD。
-![alt text](extras/img/image-18.png)
+<img src="extras/img/image-18.png" alt="配置截图" style="display:block;">
 
 - **gt_port_disp.c，gt_port_indev.c，gt_port_vf.c**
 把这几个.c文件都改成.cpp文件，如下图所示：
-![alt text](extras/img/image-14.png)
+<img src="extras/img/image-14.png" alt="配置截图" style="display:block;">
 
 编译无报错，下载到开发板，示例效果如下所示：
 ![](extras/img/example.jpg)
