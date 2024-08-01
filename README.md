@@ -92,6 +92,10 @@
 把这几个.c文件都改成.cpp文件，如下图所示：
 <img src="extras/img/image-14.png" alt="配置截图" style="display:block;">
 
+- **应用工程ESP32S3_TFT2_4.INO**
+  把examples/ESP32S3_TFT2_4/ESP32S3_TFT2_4.INO里的内容复制到src/main.cpp，然后把对应驱动文件也放在main.cpp所在的路径下，如下图所示：
+<img src="extras/img/image.png" alt="配置截图" style="display:block;">
+
 编译无报错，下载到开发板，示例效果如下所示：
 ![](extras/img/example.jpg)
 
