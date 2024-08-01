@@ -29,7 +29,9 @@
 <br/>
 
 #### 介绍
-- **GT-HMI-Engine arduino库目录结构**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该库采用GT-HMI-Engine(v1.3.x)，用做arduino库，库添加可以通过.zip库导入或者直接把整个文件夹放到库路径下。
+
+**GT-HMI-Engine arduino库目录结构**
 <table>
 <tr>
   <th style="width:40%">目录</th>
@@ -56,7 +58,6 @@
   <td>库特性说明文件</td>
 </tr>
 </table>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该库采用GT-HMI-Engine(v1.3.x)，用做arduino库，库添加可以通过.zip库导入或者直接把整个文件夹放到库路径下。
 
 #### 示例
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在examples目录下有一个简单的示例ESP32S3_TFT2_4.INO，展示了如何使用GT-HMI-Engine实现控件的显示以及控件事件的触发。
