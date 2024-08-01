@@ -11,20 +11,13 @@
 ---
 
 <br/>
-<div align="center"
->
-    <a href="https://www.hmi.gaotongfont.cn/kfgj"
-    > 公司官网 </a> |
-    <a href="https://space.bilibili.com/3493293474188211/video"
-    > B 站教程 </a> |
-    <a href="https://www.hmi.gaotongfont.cn/kfgj#/#hmiEngine"
-    > Engine 使用手册 </a> |
-    <a href="https://www.hmi.gaotongfont.cn/kfgj#/#hmidesigner"
-    > Designer 使用手册 </a> |
-    <a href="http://isite.baidu.com/site/wjz7qkrv/406a2b0c-f9c7-4a08-a47a-662e862b2af4?ch=48&wid=498ccd5c05334f21a2142ba3cf628964_0_0&field=&orderBy=&categoryId=undefined&title=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC"
-    > 联系方式 </a> |
-    <a href="https://genitop-1317577547.cos.ap-nanjing.myqcloud.com/GT-HMI/GT-HMI-Groups/GT-HMI%20Communication%20groups.jpg"
-    > GT HMI微信交流群 </a>
+<div align="center">
+    <a href="https://www.hmi.gaotongfont.cn/kfgj"> 公司官网 </a> |
+    <a href="https://space.bilibili.com/3493293474188211/video"> B 站教程 </a> |
+    <a href="https://www.hmi.gaotongfont.cn/kfgj#/#hmiEngine"> Engine 使用手册 </a> |
+    <a href="https://www.hmi.gaotongfont.cn/kfgj#/#hmidesigner"> Designer 使用手册 </a> |
+    <a href="http://isite.baidu.com/site/wjz7qkrv/406a2b0c-f9c7-4a08-a47a-662e862b2af4?ch=48&wid=498ccd5c05334f21a2142ba3cf628964_0_0&field=&orderBy=&categoryId=undefined&title=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC"> 联系方式 </a> |
+    <a href="https://genitop-1317577547.cos.ap-nanjing.myqcloud.com/GT-HMI/GT-HMI-Groups/GT-HMI%20Communication%20groups.jpg"> GT HMI微信交流群 </a>
 </div>
 <br/>
 
@@ -73,38 +66,43 @@
 **3.修改以下文件配置**：
 
 - **gt_conf.h**
+
 把GT_SCREEN_WIDTH改成320，GT_SCREEN_HEIGHT改成240。
+
 <img src="extras/img/image-5.png" alt="配置截图" style="display:block;">
 
 - **gt_port_disp.c**
+
 首先，把头文件"esp_heap_caps.h"添加进来，
+
 <img src="extras/img/image-11.png" alt="配置截图" style="display:block;">
+
 然后，把buff_all数组使用PSRAM进行内存分配。
+
 <img src="extras/img/image-12.png" alt="配置截图" style="display:block;">
+
 最后，还需要修改platformio.ini文件，在这里指定FLASH和PSRAM的运行模式以及启动PSRAM。
+
 <img src="extras/img/image-19.png" alt="配置截图" style="display:block;">
 
 - **gt_port_indev.c**
+
 该示例使用了3个物理按键，需要在gt_port_indev_init()里，把注册输入设备按键的类型改成GT_INDEV_TYPE_KEYPAD。
+
 <img src="extras/img/image-18.png" alt="配置截图" style="display:block;">
 
 - **gt_port_disp.c，gt_port_indev.c，gt_port_vf.c**
+
 把这几个.c文件都改成.cpp文件，如下图所示：
+
 <img src="extras/img/image-14.png" alt="配置截图" style="display:block;">
 
 - **应用工程ESP32S3_TFT2_4.INO**
-  把examples/ESP32S3_TFT2_4/ESP32S3_TFT2_4.INO里的内容复制到src/main.cpp，然后把对应驱动文件也放在main.cpp所在的路径下，如下图所示：
+
+把examples/ESP32S3_TFT2_4/ESP32S3_TFT2_4.INO里的内容复制到src/main.cpp，然后把对应驱动文件也放在main.cpp所在的路径下，如下图所示：
+
 <img src="extras/img/image.png" alt="配置截图" style="display:block;">
 
 编译无报错，下载到开发板，示例效果如下所示：
+
 ![](extras/img/example.jpg)
-
-
-
-
-
-
-
-
-
-
