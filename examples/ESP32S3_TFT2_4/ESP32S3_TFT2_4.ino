@@ -13,13 +13,13 @@
  *              area->y绘制区域的起始y坐标
  *              area->w绘制区域的宽度
  *              area->h绘制区域的高度
- * @param color
+ * @param color 颜色数组
  */
 void _flush_cb(struct _gt_disp_drv_s * drv, gt_area_st * area, gt_color_t * color)
 {
     uint32_t start_x = area->x, start_y = area->y;
     uint32_t end_x = start_x + area->w, end_y = start_y + area->h;
-    //遍历绘制区域内的每个像素
+    //遍历绘制区域内的每个点
     for (uint32_t y = start_y; y < end_y; y++) {
         for (uint32_t x = start_x; x < end_x; x++) {
             //画点
@@ -60,33 +60,33 @@ void read_cb(struct _gt_indev_drv_s * indev_drv, gt_indev_data_st * data)
 void read_cb_btn(struct _gt_indev_drv_s * indev_drv, gt_indev_data_st * data)
 {
     uint8_t status = 0;
-    status = xl9555_key_scan(1);
-    static int remark = 0;
+    status = xl9555_key_scan(1);                    //获取按键扫描函数返回的值
+    static int prev_state = 0;                      //用来记录按键上一次的状态
     switch (status) {
-    case KEY0_PRES:
-        data->state = GT_INDEV_STATE_PRESSED;
-        data->key = GT_KEY_ENTER;
+    case KEY0_PRES:                                 //按下KEY0
+        data->state = GT_INDEV_STATE_PRESSED;       //state设置成按下状态
+        data->key = GT_KEY_ENTER;                   //按键功能设置成ENTER，用来确定控件焦点，相当于触摸的点击作用
         break;
     case KEY1_PRES:
         data->state = GT_INDEV_STATE_PRESSED;
-        data->key = GT_KEY_NEXT;
+        data->key = GT_KEY_NEXT;                    //按键功能设置成NEXT，用来切换下一个控件
         break;
     case KEY2_PRES:
         data->state = GT_INDEV_STATE_PRESSED;
-        data->key = GT_KEY_PREV;
+        data->key = GT_KEY_PREV;                    //按键功能设置成PREV，用来切换上一个控件
         break;
-    default:
-        if (remark) {
-            data->state = GT_INDEV_STATE_RELEASED;
+    default:                                        //没有按键按下的时候会进入default
+        if (prev_state) {                           //如果按键上一个状态存在
+            data->state = GT_INDEV_STATE_RELEASED;  //state设置成抬起状态
         }
         else {
-            data->state = GT_INDEV_STATE_INVALID;
+            data->state = GT_INDEV_STATE_INVALID;   //state设置成无效状态
         }
         data->key = GT_KEY_NONE;
-        remark = 0;
+        prev_state = 0;
         break;
     }
-    remark = status;
+    prev_state = status;
 }
 
 /**
@@ -158,8 +158,8 @@ void setup() {
     lcd_init();                 /* LCD初始化 */
     timx_int_init(10, 8000);    /* 定时器初始化,定时时间为1ms */
     lcd_clear(WHITE);
-    gt_init();
-    gt_examples_button();
+    gt_init();                  /* gui初始化 */
+    gt_examples_button();       /* 按键示例函数 */
 }
 
 void loop() {
